@@ -1,13 +1,13 @@
-EpicTunableCheck.py is a python script used to check the setting of various AIX/Power tunables to ensure they meet IBM and Epic recemmendations for the Epic Operational Database.
+EpicTunableCheck.py3 is a python script used to check the settings of various AIX/Power tunables to ensure they meet IBM and Epic recemmendations for the Epic Operational Database.
 
 There are several components to the script, as well as OS requirements for executing it.
 
 Components
-EpicTunableCheck.py is the master script that sets up an output file, reads in the file named Epic_Tunables_Data, and executes commands in that file.
+EpicTunableCheck.py3 is the master script that sets up an output file, reads in the file named Epic_Tunables_Data, and executes commands in that file.
 
-Epic_Tunables_Data is the file that contains The tunable names, recommended settings, and the commands to check the existing settings of the tunables.
+Epic_Tunables_Data is the file that contains the tunable names, recommended settings, and the commands to check the existing settings of the tunables.
 
-is the output file format.
+Epic_Tunables_Output.Date-Time is the output file format.
 
 OS requirements
 python3 must be loaded on the system where the sctipt will be run.
@@ -28,4 +28,7 @@ ASSIGN THE ROLE TO THE USER
 LOGIN TO USER AND SWITCH TO THE ROLE
 # swrole display_role
 
-Now you can execute the script with the proper authprizations to display the current tunables settings.
+Now you can execute the script with the proper authorizations to display the current tunables settings.
+# python3 EpicTunableCheck.py3
+
+The script will prompt you for the full path to your iris.db file
