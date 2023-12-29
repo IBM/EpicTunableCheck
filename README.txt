@@ -5,7 +5,7 @@ There are several components to the script, as well as OS requirements for execu
 Components
 EpicTunableCheck.py3 is the master script that sets up an output file, reads in the file named Epic_Tunables_Data, and executes commands in that file.
 
-Epic_Tunables_Data is the file that contains the tunable names, recommended settings, and the commands to check the existing settings of the tunables.
+Epic_Tunables_Datafile is the file that contains the tunable names, recommended settings, and the commands to check the existing settings of the tunables.
 
 Epic_Tunables_Output.Date-Time is the output file format.
 
@@ -31,4 +31,4 @@ LOGIN TO USER AND SWITCH TO THE ROLE
 Now you can execute the script with the proper authorizations to display the current tunables settings.
 # python3 EpicTunableCheck.py3
 
-The script will prompt you for the full path to your iris.db file
+The script will prompt you for the full path to your irisdb file
