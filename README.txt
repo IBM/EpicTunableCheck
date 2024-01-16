@@ -1,4 +1,4 @@
-EpicTunableCheck.py3 is a python script used to check the settings of various AIX/Power tunables to ensure they meet IBM and Epic recemmendations for the Epic Operational Database.
+EpicTunableCheck.py3 is a python script used to check the settings of various AIX/Power tunables to ensure they meet IBM and Epic recommendations for the Epic Operational Database.
 
 There are several components to the script, as well as OS requirements for executing it.
 
