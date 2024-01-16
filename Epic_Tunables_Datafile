@@ -1,43 +1,43 @@
-DPageSize, 64k, printf '\n\n'; read irisdbpath?"Enter the full path to your IRISDB file: "; dump -ov -X64 $irisdbpath
-Core Dump Location, /epic_core, lscore -d | grep corefile
-CORE_NOSHM, TRUE, echo $CORE_NOSHM
-libc++.rte, 17.1.1.2 or higher, lslpp -L | grep 'libc++.rte' | awk {'print $2'}
-Time Zone, Customer Time Zone, echo $TZ
-NTP4 Enabled, tinker step 0, grep tinker /etc/ntp.conf
-tcp_nodelayack, 1, no -o tcp_nodelayack | awk {'print $3'}
-tcptr_enable, 0, no -o tcptr_enable | awk {'print $3'}
-AIX License Limit, 32767, lslicense | grep licenses | awk {'print $7'}
-j2_nBufferPerPagerDevice, 2048, ioo -o j2_nBufferPerPagerDevice | awk {'print $3'}
-pv_min_pbuf, 4096, ioo -o pv_min_pbuf | awk {'print $3'}
-ATTnum of pty0, Larger of 256 or expected number concurrent logins, lsattr -El pty0 | grep ATT | awk {'print $2'}
-maxuproc, 100000, lsattr -El sys0 -a maxuproc | awk {'print $2'}
-rfc1323, TCP Window Scaling (1)Enabled, no -a | grep rfc1323 | awk {'print $3'}
-sack, 1(Enabled), no -o sack | awk {'print $3'}
-sb_max, 33554432, no -o sb_max | awk {'print $3'}
-tcp_keepidle, 1200, no -o tcp_keepidle | awk {'print $3'}
-tcp_keepintvl, 120, no -o tcp_keepintvl | awk {'print $3'}
-tcp_recvspace, 262144, no -o tcp_recvspace | awk {'print $3'}
-tcp_sendspace, 262144, no -o tcp_sendspace | awk {'print $3'}
-minperm, 1, vmstat -v | grep minperm | awk {'print $1'}
-trcctl, Enabled, trcctl -l | grep trace | awk {'print $8'}
-hugeseg_shm_mode, 2, vmo -x hugeseg_shm_mode | awk -F "," {'print $2'}
-lgpg_regions, < Memory allocated to Server, vmo -x lgpg_regions | awk -F "," {'print $2'}
-lgpg_size, 16777216, vmo -x lgpg_size | awk -F "," {'print $2'}
-num_locks_per_semid, 64, vmo -x num_locks_per_semid | awk -F "," {'print $2'}
-pgz_lpgrow, 3, vmo -x pgz_lpgrow | awk -F "," {'print $2'}
-pgz_mode, 3, vmo -x pgz_mode | awk -F "," {'print $2'}
-pgz_num_workers, 12, vmo -x pgz_num_workers | awk -F "," {'print $2'}
-vmm_default_pspa, Unlimited(-1), vmo -x vmm_default_pspa | awk -F "," {'print $2'}
-vmm_mpsize_support, Default(-1) set to 3, vmo -x vmm_mpsize_support | awk -F "," {'print $2'}
-vmm_vmap_policy, 0, vmo -x vmm_vmap_policy | awk -F "," {'print $2'}
-waitpid_direction, 1, schedo -x waitpid_direction | awk -F "," {'print $2'}
-fc_recov_err, fast_fail, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "fc_err_recov" | awk {'print $2'}; done
-dyntrk, yes, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "dyntrk" | awk {'print $2'}; done
-queue_depth, 64, printf '\n\n'; for DEV in $(lsdev -l hdisk* | awk '{print $1}'); do if [ -n "$(lsattr -El $DEV | grep queue_depth)" ]; then printf $DEV; printf '\t'; lsattr -El $DEV | grep queue_depth | awk {'print $2'}; fi; done
-epicadm core ulimit, -1 (Unlimited), lsuser -a core epicadm | awk -F = {'print $2'}
-epicadm file size ulimit, -1 (Unlimited), lsuser -a fsize epicadm | awk -F = {'print $2'}
-epicdmn core ulimit, -1 (Unlimited), lsuser -a core epicdmn | awk -F = {'print $2'}
-epicdmn file size ulimit, -1 (Unlimited), lsuser -a fsize epicdmn | awk -F = {'print $2'}
-root core ulimit, -1 (Unlimited), lsuser -a core root | awk -F = {'print $2'}
-root file size ulimit, -1 (Unlimited), lsuser -a fsize root | awk -F = {'print $2'}
-large files flag (lff), yes (if your IRIS.DAT files will be larger than 16TB or your filesystems will be larger than 32TB), printf "Filesystems that do not have the lff flag set are listed below"; printf '\n\n'; mount | grep -v lff 
+DPageSize, printf '\n\n'; read irisdbpath?"Enter the full path to your IRISDB file: "; dump -ov -X64 $irisdbpath
+Core Dump Location, lscore -d | grep corefile
+CORE_NOSHM, echo $CORE_NOSHM
+libc++.rte, lslpp -L | grep 'libc++.rte' | awk {'print $2'}
+Time Zone, echo $TZ
+NTP4 Enabled, grep tinker /etc/ntp.conf
+tcp_nodelayack, no -o tcp_nodelayack | awk {'print $3'}
+tcptr_enable, no -o tcptr_enable | awk {'print $3'}
+AIX License Limit, lslicense | grep licenses | awk {'print $7'}
+j2_nBufferPerPagerDevice, ioo -o j2_nBufferPerPagerDevice | awk {'print $3'}
+pv_min_pbuf, ioo -o pv_min_pbuf | awk {'print $3'}
+ATTnum of pty0, lsattr -El pty0 | grep ATT | awk {'print $2'}
+maxuproc, lsattr -El sys0 -a maxuproc | awk {'print $2'}
+rfc1323, no -a | grep rfc1323 | awk {'print $3'}
+sack, no -o sack | awk {'print $3'}
+sb_max, no -o sb_max | awk {'print $3'}
+tcp_keepidle, no -o tcp_keepidle | awk {'print $3'}
+tcp_keepintvl, no -o tcp_keepintvl | awk {'print $3'}
+tcp_recvspace, no -o tcp_recvspace | awk {'print $3'}
+tcp_sendspace, no -o tcp_sendspace | awk {'print $3'}
+minperm, vmstat -v | grep minperm | awk {'print $1'}
+trcctl, trcctl -l | grep trace | awk {'print $8'}
+hugeseg_shm_mode, vmo -x hugeseg_shm_mode | awk -F "," {'print $2'}
+lgpg_regions, vmo -x lgpg_regions | awk -F "," {'print $2'}
+lgpg_size, vmo -x lgpg_size | awk -F "," {'print $2'}
+num_locks_per_semid, vmo -x num_locks_per_semid | awk -F "," {'print $2'}
+pgz_lpgrow, vmo -x pgz_lpgrow | awk -F "," {'print $2'}
+pgz_mode, vmo -x pgz_mode | awk -F "," {'print $2'}
+pgz_num_workers, vmo -x pgz_num_workers | awk -F "," {'print $2'}
+vmm_default_pspa, vmo -x vmm_default_pspa | awk -F "," {'print $2'}
+vmm_mpsize_support, vmo -x vmm_mpsize_support | awk -F "," {'print $2'}
+vmm_vmap_policy, vmo -x vmm_vmap_policy | awk -F "," {'print $2'}
+waitpid_direction, schedo -x waitpid_direction | awk -F "," {'print $2'}
+fc_recov_err, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "fc_err_recov" | awk {'print $2'}; done
+dyntrk, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "dyntrk" | awk {'print $2'}; done
+queue_depth, printf '\n\n'; for DEV in $(lsdev -l hdisk* | awk '{print $1}'); do if [ -n "$(lsattr -El $DEV | grep queue_depth)" ]; then printf $DEV; printf '\t'; lsattr -El $DEV | grep queue_depth | awk {'print $2'}; fi; done
+epicadm core ulimit, lsuser -a core epicadm | awk -F = {'print $2'}
+epicadm file size ulimit, lsuser -a fsize epicadm | awk -F = {'print $2'}
+epicdmn core ulimit, lsuser -a core epicdmn | awk -F = {'print $2'}
+epicdmn file size ulimit, lsuser -a fsize epicdmn | awk -F = {'print $2'}
+root core ulimit, lsuser -a core root | awk -F = {'print $2'}
+root file size ulimit, lsuser -a fsize root | awk -F = {'print $2'}
+large files flag (lff), printf "Filesystems that do not have the lff flag set are listed below"; printf '\n\n'; mount | grep -v lff 
