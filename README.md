@@ -32,3 +32,7 @@ Now you can execute the script with the proper authorizations to display the cur
 # python3 EpicTunableCheck.py3
 
 The script will prompt you for the full path to your irisdb file
+
+To check the current tunable settings against Epic recommended settings, download the document at this link:
+
+https://urldefense.proofpoint.com/v2/url?u=https-3A__galaxy.epic.com_Redirect.aspx-3FDocumentID-3D2220736-26PrefDocID-3D101671&d=DwMFAw&c=jf_iaSHvJObTbx-siA1ZOg&r=KRYkStYrkYTeaPd4maz1r2DYy1YM-N6xfqFiy5DEXbg&m=Vwczf7iesP-xKTH5iSHYFEzu7D2TKsnMTsuze2fpKE4r-NOoHr93Q_gqLT5UyLGW&s=19TY3pu6mrb_Kez1OcISpw_0kLLcPnHzlKrfWeqWvqA&e=
