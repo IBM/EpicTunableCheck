@@ -1,43 +1,49 @@
 DPageSize, printf '\n\n'; read irisdbpath?"Enter the full path to your IRISDB file: "; dump -ov -X64 $irisdbpath
+Encryption capable VG flag, printf '\n\n'; read epicvgs?"Enter your Epic VG names (separated by spaces): "; for i in $epicvgs; do printf $i": "; lsvg $i | grep -i encryption; done
+AIX License Limit, lslicense | grep licenses | awk {'print $7'}
+ATTnum of pty0, lsattr -El pty0 | grep ATT | awk {'print $2'}
 Core Dump Location, lscore -d | grep corefile
 CORE_NOSHM, echo $CORE_NOSHM
-libc++.rte, lslpp -L | grep 'libc++.rte' | awk {'print $2'}
-Time Zone, echo $TZ
-NTP4 Enabled, grep tinker /etc/ntp.conf
-tcp_nodelayack, no -o tcp_nodelayack | awk {'print $3'}
+vpm_fold_policy, schedo -x vpm_fold_policy | awk -F "," {'print $2'}
 tcptr_enable, no -o tcptr_enable | awk {'print $3'}
-AIX License Limit, lslicense | grep licenses | awk {'print $7'}
-j2_nBufferPerPagerDevice, ioo -o j2_nBufferPerPagerDevice | awk {'print $3'}
-pv_min_pbuf, ioo -o pv_min_pbuf | awk {'print $3'}
-ATTnum of pty0, lsattr -El pty0 | grep ATT | awk {'print $2'}
-maxuproc, lsattr -El sys0 -a maxuproc | awk {'print $2'}
-rfc1323, no -a | grep rfc1323 | awk {'print $3'}
-sack, no -o sack | awk {'print $3'}
-sb_max, no -o sb_max | awk {'print $3'}
-tcp_keepidle, no -o tcp_keepidle | awk {'print $3'}
-tcp_keepintvl, no -o tcp_keepintvl | awk {'print $3'}
-tcp_recvspace, no -o tcp_recvspace | awk {'print $3'}
-tcp_sendspace, no -o tcp_sendspace | awk {'print $3'}
-minperm, vmstat -v | grep minperm | awk {'print $1'}
-trcctl, trcctl -l | grep trace | awk {'print $8'}
-hugeseg_shm_mode, vmo -x hugeseg_shm_mode | awk -F "," {'print $2'}
+fc_err_recov, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "fc_err_recov" | awk {'print $2'}; done
+dyntrk, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "dyntrk" | awk {'print $2'}; done
 lgpg_regions, vmo -x lgpg_regions | awk -F "," {'print $2'}
 lgpg_size, vmo -x lgpg_size | awk -F "," {'print $2'}
+libc++.rte, lslpp -L | grep 'libc++.rte' | awk {'print $2'}
+maxuproc, lsattr -El sys0 -a maxuproc | awk {'print $2'}
+Microcode and Firmware Level, lsmcode -c | grep permanent | awk {'print $8 $9'}
+minperm, vmstat -v | grep minperm | awk {'print $1'}
 num_locks_per_semid, vmo -x num_locks_per_semid | awk -F "," {'print $2'}
+Paging Space, printf '\n\n'; lsps -a
 pgz_lpgrow, vmo -x pgz_lpgrow | awk -F "," {'print $2'}
 pgz_mode, vmo -x pgz_mode | awk -F "," {'print $2'}
 pgz_num_workers, vmo -x pgz_num_workers | awk -F "," {'print $2'}
-vmm_default_pspa, vmo -x vmm_default_pspa | awk -F "," {'print $2'}
-vmm_mpsize_support, vmo -x vmm_mpsize_support | awk -F "," {'print $2'}
-vmm_vmap_policy, vmo -x vmm_vmap_policy | awk -F "," {'print $2'}
-waitpid_direction, schedo -x waitpid_direction | awk -F "," {'print $2'}
-fc_recov_err, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "fc_err_recov" | awk {'print $2'}; done
-dyntrk, printf '\n\n'; for DEV in $(lsdev -l fscsi* | awk '{print $1}'); do printf $DEV; printf '\t';  lsattr -El $DEV | grep -E "dyntrk" | awk {'print $2'}; done
-queue_depth, printf '\n\n'; for DEV in $(lsdev -l hdisk* | awk '{print $1}'); do if [ -n "$(lsattr -El $DEV | grep queue_depth)" ]; then printf $DEV; printf '\t'; lsattr -El $DEV | grep queue_depth | awk {'print $2'}; fi; done
+Power Saving Mode, printf "Check in HMC or ASM Management"
+trcctl, trcctl -l | grep trace | awk {'print $8'}
+rfc1323, no -a | grep rfc1323 | awk {'print $3'}
+sack, no -o sack | awk {'print $3'}
+sb_max, no -o sb_max | awk {'print $3'}
+SMT, printf '\n'; lparstat -i | grep Type | awk {'print $3'}
+Time Zone, echo $TZ
+tcp_keepidle, no -o tcp_keepidle | awk {'print $3'}
+tcp_keepintvl, no -o tcp_keepintvl | awk {'print $3'}
+tcp_nodelayack, no -o tcp_nodelayack | awk {'print $3'}
+tcp_recvspace, no -o tcp_recvspace | awk {'print $3'}
+tcp_sendspace, no -o tcp_sendspace | awk {'print $3'}
 epicadm core ulimit, lsuser -a core epicadm | awk -F = {'print $2'}
 epicadm file size ulimit, lsuser -a fsize epicadm | awk -F = {'print $2'}
 epicdmn core ulimit, lsuser -a core epicdmn | awk -F = {'print $2'}
 epicdmn file size ulimit, lsuser -a fsize epicdmn | awk -F = {'print $2'}
 root core ulimit, lsuser -a core root | awk -F = {'print $2'}
 root file size ulimit, lsuser -a fsize root | awk -F = {'print $2'}
-large files flag (lff), printf "Filesystems that do not have the lff flag set are listed below"; printf '\n\n'; mount | grep -v lff 
+vmm_mpsize_support, vmo -x vmm_mpsize_support | awk -F "," {'print $2'}
+XL C++ Runtime Version, printf '\n\n'; lslpp -L xlC\.*
+zlib version, lslpp -L zlib
+vmm_default_pspa, vmo -x vmm_default_pspa | awk -F "," {'print $2'}
+vmm_vmap_policy, vmo -x vmm_vmap_policy | awk -F "," {'print $2'}
+waitpid_direction, schedo -x waitpid_direction | awk -F "," {'print $2'}
+large files flag (lff), printf "Filesystems that do not have the lff flag set are listed below"; printf '\n\n'; mount | grep -v lff
+hugeseg_shm_mode, vmo -x hugeseg_shm_mode | awk -F "," {'print $2'}
+NTP4 Enabled, grep tinker /etc/ntp.conf
+OpenSSL Version, printf '\n\n'; lslpp -L openssl.base

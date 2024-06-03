@@ -19,12 +19,11 @@ f = open(filename, "w")
 for i in range(0, len(HC_List)):
         f.write("For Tunable Parameter: " + HC_List[i][0])
         f.write("\n")
-        while True:
-              try:
-                   tunset = (str((subprocess.check_output(HC_List[i][1].strip(), shell=True, universal_newlines=True))))
-       	           f.write("Current Setting is: " + tunset)
-                   break
-              except BaseException: 
-                   print("This parameter is not set")
+        try:
+           tunset = (str((subprocess.check_output(HC_List[i][1].strip(), shell=True, universal_newlines=True))))
+       	   f.write("Current Setting is: " + tunset)
+        except BaseException as e: 
+           print("This parameter is not set", e)
+           f.write("Current Setting is: This parameter is not set")
         f.write("\n\n")
 f.close()
