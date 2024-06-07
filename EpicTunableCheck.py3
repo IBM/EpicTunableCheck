@@ -1,3 +1,5 @@
+# Copyright contributors to the EpicTunableCheck  project
+
 # This Python script checks the values of multiple tunable parameters
 # and compares them against current recommended settings from IBM and Epic
 # for Epic Applications running on IBM AIX servers.
