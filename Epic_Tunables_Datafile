@@ -20,7 +20,7 @@ pgz_lpgrow, vmo -x pgz_lpgrow | awk -F "," {'print $2'}
 pgz_mode, vmo -x pgz_mode | awk -F "," {'print $2'}
 pgz_num_workers, vmo -x pgz_num_workers | awk -F "," {'print $2'}
 Power Saving Mode, lparstat -E | tail -n 3
-trcctl, trcctl -l | grep trace | awk {'print $8'}
+Restrict trace command, trcctl -l | grep trace | awk {'print $8'}
 rfc1323, no -a | grep rfc1323 | awk {'print $3'}
 sack, no -o sack | awk {'print $3'}
 sb_max, no -o sb_max | awk {'print $3'}
