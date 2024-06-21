@@ -1,4 +1,4 @@
-DPageSize, printf '\n\n'; read irisdbpath?"Enter the full path to your IRISDB file: "; dump -ov -X64 $irisdbpath
+DPageSize, printf '\n\n'; read irisdbpath?"Enter the full path to your IRISDB file: "; dump -ov -X64 $irisdbpath | tail -n 2
 Encryption capable VG flag, printf '\n\n'; read epicvgs?"Enter your Epic VG names (separated by spaces): "; for i in $epicvgs; do printf $i": "; lsvg $i | grep -i encryption; done
 AIX License Limit, lslicense | grep licenses | awk {'print $7'}
 ATTnum of pty0, lsattr -El pty0 | grep ATT | awk {'print $2'}
@@ -19,7 +19,7 @@ Paging Space, printf '\n\n'; lsps -a
 pgz_lpgrow, vmo -x pgz_lpgrow | awk -F "," {'print $2'}
 pgz_mode, vmo -x pgz_mode | awk -F "," {'print $2'}
 pgz_num_workers, vmo -x pgz_num_workers | awk -F "," {'print $2'}
-Power Saving Mode, printf "Check in HMC or ASM Management"
+Power Saving Mode, lparstat -E | tail -n 3
 trcctl, trcctl -l | grep trace | awk {'print $8'}
 rfc1323, no -a | grep rfc1323 | awk {'print $3'}
 sack, no -o sack | awk {'print $3'}
